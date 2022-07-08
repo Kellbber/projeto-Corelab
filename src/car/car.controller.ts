@@ -18,22 +18,34 @@ export class CarController {
   }
 
   @Get()
+  @ApiOperation({
+    summary: 'all cars',
+  })
   findAll() {
     return this.carService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({
+    summary: 'view one car for ID',
+  })
   findOne(@Param('id') id: string) {
-    return this.carService.findOne(id);
+    return this.carService.findById(id);
   }
 
   @Patch(':id')
+  @ApiOperation({
+    summary: 'update car',
+  })
   update(@Param('id') id: string, @Body() updateCarDto: UpdateCarDto) {
     return this.carService.update(id, updateCarDto);
   }
 
   @Delete(':id')
+  @ApiOperation({
+    summary: 'delete car',
+  })
   remove(@Param('id') id: string) {
-    return this.carService.remove(id);
+    return this.carService.delete(id);
   }
 }
