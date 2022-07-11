@@ -17,8 +17,8 @@ export class CarService {
   }
 
   async create(createCarDto: CreateCarDto) {
-    console.log(createCarDto)
-    return await this.prisma.car.create({
+
+   const newCar= await this.prisma.car.create({
       
       data: {
         name: createCarDto.name,
@@ -30,7 +30,7 @@ export class CarService {
         license: createCarDto.license,
       },
     });
-    
+    return newCar;
   }
 
   async findById(id: string): Promise<Car> {
@@ -62,7 +62,7 @@ export class CarService {
         },
       });
     } catch (err) {
-      console.log(err);
+      alert(err)
       throw new BadRequestException(err.message);
     }
   }
@@ -77,7 +77,7 @@ export class CarService {
       });
       return car;
     } catch (err) {
-      console.log(err);
+      alert(err)
       throw new NotFoundException(`Not founded car with id: ${id}`);
     }
   }
